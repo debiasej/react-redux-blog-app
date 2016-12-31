@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
+//import { bindActionCreators } from 'redux';
 import { fetchPosts } from '../actions/index';
 
 class PostsIndex extends Component {
@@ -15,10 +15,15 @@ class PostsIndex extends Component {
   }
 }
 
+// Original version
 // function mapDispatchToProps(dispath) {
 //   return bindActionCreators({ fetchPosts }, dispath);
 // }
 
 //export default connect(null, mapDispatchToProps)(PostsIndex);
 
-export default connect(null, { fetchPosts: fetchPosts })(PostsIndex);
+// First refactor
+//export default connect(null, { fetchPosts: fetchPosts })(PostsIndex);
+
+// Second refactor: using ES6 sintax
+export default connect(null, { fetchPosts })(PostsIndex);
