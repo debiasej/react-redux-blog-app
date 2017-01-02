@@ -3,27 +3,33 @@ import { reduxForm } from 'redux-form';
 
 class PostsNew extends Component {
   render() {
-      return (
-        <form>
-          <h3>Create a New Post</h3>
-          <div className="form-group">
-            <label>Title</label>
-            <input type="text" className="form-control" />
-          </div>
+    const { fields: { title, categories, content }, handleSubmit } = this.props;
+    // const handleSubmit = this.props.handleSubmit;
+    // const title = this.props.fields.title; ...
 
-          <div className="form-group">
-            <label>Categories</label>
-            <input type="text" className="form-control" />
-          </div>
+    console.log(title);
 
-          <div className="form-group">
-            <label>Content</label>
-            <textarea type="text" className="form-control" />
-          </div>
+    return (
+      <form onSubmit={handleSubmit}>
+        <h3>Create a New Post</h3>
+        <div className="form-group">
+          <label>Title</label>
+          <input type="text" className="form-control" {...title} />
+        </div>
 
-          <button type="submit" className="btn btn-primary">Submit</button>
-        </form>
-      );
+        <div className="form-group">
+          <label>Categories</label>
+          <input type="text" className="form-control" {...categories} />
+        </div>
+
+        <div className="form-group">
+          <label>Content</label>
+          <textarea type="text" className="form-control" {...content} />
+        </div>
+
+        <button type="submit" className="btn btn-primary">Submit</button>
+      </form>
+    );
   }
 }
 
