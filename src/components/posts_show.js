@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchPost } from '../actions/index';
+import { Link } from 'react-router';
 
 class PostsShow extends Component {
   componentWillMount() {
@@ -16,9 +17,10 @@ class PostsShow extends Component {
     }
     return (
       <div>
-          <h3>{post.title}</h3>
-          <h6>Categories: {post.categories}</h6>
-          <p>{post.content}</p>
+        <Link to="/">Back To Index</Link>
+        <h3>{post.title}</h3>
+        <h6>Categories: {post.categories}</h6>
+        <p>{post.content}</p>
       </div>
     );
   }
