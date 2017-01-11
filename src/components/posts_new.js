@@ -1,7 +1,25 @@
+import _ from 'lodash';
 import React, { Component, PropTypes } from 'react';
 import { reduxForm } from 'redux-form';
 import { createPost } from '../actions/index';
 import { Link } from 'react-router';
+
+const FIELDS = {
+  title: {
+    type: 'input',
+    label: 'Title for Post'
+  },
+  categories: {
+    type: 'input',
+    label: 'Enter some categories'
+  },
+  content: {
+    type: 'textarea',
+    label: 'Post Contents'
+  }
+};
+
+//['title', 'categories', 'content'];
 
 class PostsNew extends Component {
   static contextTypes = {
@@ -79,7 +97,7 @@ function validate(values) {
 // reduxForm is like connect function in react-redux library
 export default reduxForm({
   form: 'PostsNewForm',
-  fields: ['title', 'categories', 'content'],
+  fields: _.keys(FIELDS),
   validate
 }, null, { createPost })(PostsNew);
 
