@@ -36,38 +36,32 @@ class PostsNew extends Component {
       });
   }
 
+  renderField(fieldConfig, field) {
+    const fieldHelper = this.props.fields[field];
+
+    return (
+      <div
+        className={`form-group ${fieldHelper.touched && fieldHelper.invalid ? 'has-danger' : ''}`}
+        key={fieldConfig.label}>
+          <label>{fieldConfig.label}</label>
+          <fieldConfig.type type="text" className="form-control" {...fieldHelper} />
+          <div className="form-control-feedback">
+            {fieldHelper.touched ? fieldHelper.error : ''}
+          </div>
+      </div>
+    );
+  }
+
   render() {
-    const { fields: { title, categories, content }, handleSubmit } = this.props;
+    const { handleSubmit } = this.props;
+    //const { fields: { title, categories, content }, handleSubmit } = this.props;
     // const handleSubmit = this.props.handleSubmit;
     // const title = this.props.fields.title; ...
 
     return (
       <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
         <h3>Create a New Post</h3>
-        <div className={`form-group ${title.touched && title.invalid ? 'has-danger' : ''}`}>
-          <label>Title</label>
-          <input type="text" className="form-control" {...title} />
-          <div className="form-control-feedback">
-            {title.touched ? title.error : ''}
-          </div>
-        </div>
-
-        <div className={`form-group ${categories.touched && categories.invalid ? 'has-danger' : ''}`}>
-          <label>Categories</label>
-          <input type="text" className="form-control" {...categories} />
-          <div className="form-control-feedback">
-            {categories.touched ? categories.error : ''}
-          </div>
-        </div>
-
-        <div className={`form-group ${content.touched && content.invalid ? 'has-danger' : ''}`}>
-          <label>Content</label>
-          <textarea type="text" className="form-control" {...content} />
-          <div className="form-control-feedback">
-            {content.touched ? content.error : ''}
-          </div>
-        </div>
-
+        {_.map(FIELDS, this.renderField.bind(this))}
         <button type="submit" className="btn btn-primary">Submit</button>
         <Link to="/" className="btn btn-danger">Cancel</Link>
       </form>
