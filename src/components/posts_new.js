@@ -78,7 +78,13 @@ class PostsNew extends Component {
 function validate(values) {
   const errors = {};
 
-  if (!values.title) {
+  _.each(FIELDS, (element, field) => {
+    if(!values[field]) {
+      errors[field] = `Enter a ${field}`;
+    }
+  });
+
+  /*if (!values.title) {
     errors.title = 'Enter a username';
   }
   if (!values.categories) {
@@ -86,7 +92,7 @@ function validate(values) {
   }
   if (!values.content) {
     errors.content = 'Enter some content';
-  }
+  }*/
 
   return errors;
 }
