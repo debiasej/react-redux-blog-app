@@ -7,19 +7,20 @@ import { Link } from 'react-router';
 const FIELDS = {
   title: {
     type: 'input',
-    label: 'Title for Post'
+    label: 'Title for Post',
+    textError: 'Enter a username'
   },
   categories: {
     type: 'input',
-    label: 'Enter some categories'
+    label: 'Enter some categories',
+    textError: 'Enter categories'
   },
   content: {
     type: 'textarea',
-    label: 'Post Contents'
+    label: 'Post Contents',
+    textError: 'Enter some content'
   }
 };
-
-//['title', 'categories', 'content'];
 
 class PostsNew extends Component {
   static contextTypes = {
@@ -74,7 +75,7 @@ function validate(values) {
 
   _.each(FIELDS, (element, field) => {
     if(!values[field]) {
-      errors[field] = `Enter a ${field}`;
+      errors[field] = element.textError;
     }
   });
 
