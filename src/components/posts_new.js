@@ -8,17 +8,17 @@ const FIELDS = {
   title: {
     type: 'input',
     label: 'Title for Post',
-    textError: 'Enter a username'
+    validationError: 'Enter a username'
   },
   categories: {
     type: 'input',
     label: 'Enter some categories',
-    textError: 'Enter categories'
+    validationError: 'Enter categories'
   },
   content: {
     type: 'textarea',
     label: 'Post Contents',
-    textError: 'Enter some content'
+    validationError: 'Enter some content'
   }
 };
 
@@ -75,7 +75,7 @@ function validate(values) {
 
   _.each(FIELDS, (element, field) => {
     if(!values[field]) {
-      errors[field] = element.textError;
+      errors[field] = element.validationError;
     }
   });
 
